@@ -1,0 +1,61 @@
+ul#bibdk-help-menu {
+    list-style: none outside none;
+    margin-right: 0.5em;
+}
+
+ul#bibdk-help-menu li {
+    display: block;
+    float: right;
+    margin-right: 0.5em;
+}
+
+div.block-bibdk-help {
+    float: left;
+}
+
+
+.page-help .node-userhelp h2.node-title {
+    font-size: 1.1em;
+    margin-bottom: 0em;
+}
+
+.page-help .node-userhelp div.content {
+    margin-left: 1.5em;
+}
+
+.page-help div#region-help {
+    float: right;
+}
+
+.page-help section#section-content {
+  clear: both;
+}
+
+.page-help div#breadcrumb {
+}
+
+.page-help div#breadcrumb .trail {
+    float: none;
+}
+
+.page-help ul,
+.page-help h2,
+.page-help fieldset {
+    margin-bottom: 0px;
+}
+
+.page-help .form-item-search-block-form,
+.page-help #edit-actions {
+  float: left;
+  margin-right: 1em;
+}
+
+.page-help #edit-userhelp .form-item input {
+  width: 16em;
+  margin-right: 1em;
+}
+
+.page-help #edit-userhelp .form-item,
+.page-help #edit-userhelp .form-actions {
+  float: left;
+}

@@ -1,0 +1,12 @@
+name = Bibliotek.dk user help
+description = Provide a user help function for Bibliotek.dk.
+core = 7.x
+package = "Bibliotek.dk"
+
+; dependencies[] = pathauto
+dependencies[] = ctools
+dependencies[] = panels
+dependencies[] = page_manager
+
+scripts[] = js/bibdk_help.js
+scripts[] = js/jquery.popupwindow.js
