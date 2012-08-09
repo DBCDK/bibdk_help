@@ -20,7 +20,11 @@ function bibdk_help_help($path, $arg) {
  */
 function bibdk_help_block_info() {
   $blocks['bibdk-help-menu'] = array(
-      'info' => t('Bibliotek.dk help menu'),
+      'info' => t('Bibliotek.dk user help menu'),
+      'cache' => DRUPAL_CACHE_PER_PAGE,
+    );
+  $blocks['bibdk-help-form'] = array(
+      'info' => t('Bibliotek.dk user help search'),
       'cache' => DRUPAL_CACHE_PER_PAGE,
     );
   return $blocks;
@@ -39,8 +43,12 @@ function bibdk_help_block_view($delta = '') {
         array('group' => CSS_DEFAULT,
         'every_page' => TRUE)
       );
-      $block['subject'] = t('Bibliotek.dk help menu');
+      $block['subject'] = t('Bibliotek.dk user help menu');
       $block['content'] = theme('theme-bibdk-help-menu', array('text'=>t('Help')));
+      break;
+    case 'bibdk-help-form':
+      $block['subject'] = t('Bibliotek.dk user help search');
+      $block['content'] = drupal_get_form('bibdk_help_search_form');
       break;
   }
   return $block;

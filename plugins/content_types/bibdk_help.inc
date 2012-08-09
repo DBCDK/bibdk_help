@@ -1,9 +1,8 @@
 <?php
 
-
 /**
  * @file
- * Bibdk user helptext. ctools content type that takes advantage of context.
+ * Bibdk user helptext: ctools content type.
  *
  */
 
@@ -36,6 +35,8 @@ $plugin = array(
  *   An object with at least title and content members
  */
 function bibdk_help_render($subtype, $conf, $args, $context) {
+
+// bibdk_help_update_index();
 
   $data = $context->data;
   $block = new stdClass();
@@ -81,11 +82,10 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
     )
   );
 
-  $renderable_array['search_form'] = drupal_get_form('bibdk_help_search_form');
-
   $renderable_array['explanation'] = array(
     '#markup' => '<p>' . t("This list is a list of help texts.") . '</p>',
   );
+
   foreach ($result as $row) {
     $node = node_load($row->nid);
     $nodeview = node_view($node, 'bibdk_help_list');
@@ -95,10 +95,11 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
   }
 
   $block->content = $renderable_array;
-// dpm($block);
+
   return $block;
 
 }
+
 
 /**
  * 'Edit' callback for the content type.
@@ -113,12 +114,10 @@ function bibdk_help_edit_form($form, &$form_state) {
     '#size' => 5,
     '#description' => t('Optional: Help text node ID.'),
     '#default_value' => !empty($conf['helptext_id']) ? $conf['helptext_id'] : '0',
-    '#prefix' => '<div class="clear-block no-float">',
-    '#suffix' => '</div>',
   );
-
   return $form;
 }
+
 
 function bibdk_help_edit_form_submit($form, &$form_state) {
   foreach (element_children($form) as $key) {
