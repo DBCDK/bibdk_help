@@ -19,7 +19,7 @@ function bibdk_help_search_form($form, &$form_state) {
     '#default_value' => !empty($form_state['values']['search_help']) ? $form_state['values']['search_help'] : '',
   );
 
-  $form['userhelp']['actions'] = array('#type' => 'actions');
+  $form['userhelp']['actions']['#type'] = 'actions';
   $form['userhelp']['actions']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
@@ -60,6 +60,12 @@ function bibdk_help_search_form_search($query) {
 }
 
 
+function bibdk_help_menu_alter(&$items) {
+  // remove user_help search from search tab.
+  unset($items['search/user_help']);
+  unset($items['search/user_help/%menu_tail']);
+}
+
 /**
  * Implements hook_search_execute().
  */
@@ -99,7 +105,8 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
   foreach ($find as $item) {
     // Render the node.
     $node = node_load($item->sid);
-    $build = node_view($node, 'bibdk_help_list');
+    $build = node_view($node, 'search_result');
+    // $build = node_view($node, 'bibdk_help_list');
     unset($build['#theme']);
     $node->rendered = drupal_render($build);
 
@@ -110,11 +117,11 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 
     $uri = entity_uri('node', $node);
     $results[] = array(
-      'link' => url($uri['path'], array_merge($uri['options'], array('absolute' => TRUE))),
+      'link' => str_replace('/node/','/help/',url($uri['path']), array_merge($uri['options'], array('absolute' => TRUE))),
       'type' => check_plain(node_type_get_name($node)),
       'title' => $node->title,
-      'user' => theme('username', array('account' => $node)),
-      'date' => $node->changed,
+      // 'user' => theme('username', array('account' => $node)),
+      // 'date' => $node->changed,
       'node' => $node,
       'extra' => $extra,
       'theme' => 'search_item',
@@ -128,7 +135,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
     '#results' => $results,
     '#module' => 'bibdk_help',
   );
-  // return $results;
+
 }
 
 

@@ -36,8 +36,6 @@ $plugin = array(
  */
 function bibdk_help_render($subtype, $conf, $args, $context) {
 
-// bibdk_help_update_index();
-
   $data = $context->data;
   $block = new stdClass();
   $nid = FALSE;

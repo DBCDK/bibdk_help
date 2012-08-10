@@ -75,6 +75,16 @@ function bibdk_help_install() {
 
 
 /**
+ * Implements hook_enable().
+ */
+function bibdk_help_enable() {
+  $search_active_modules = variable_get('search_active_modules');
+  $search_active_modules['bibdk_help'] = 'bibdk_help';
+  variable_put('search_active_modules');
+}
+
+
+/**
  * Implements hook_uninstall().
  */
 function bibdk_help_uninstall() {
