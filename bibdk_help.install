@@ -24,6 +24,22 @@
  */
 function bibdk_help_install() {
   $t = get_t();
+
+  // Custom menu for user help content.
+  $help_menu = array(
+    'menu_name'   => 'user-help-menu',
+    'title'       => 'User help',
+    'description' => 'User help list, about and contact links',
+  );
+  menu_save($help_menu);
+
+  // configure default menu for user help content.
+  $menu_options_userhelp['0'] = 'main-menu';
+  $menu_options_userhelp['1'] = 'user-help-menu';
+  variable_set('menu_options_userhelp',$menu_options_userhelp);
+  $menu_parent_userhelp = 'user-help-menu:0';
+  variable_set('menu_parent_userhelp',$menu_parent_userhelp);
+
   $userhelp = array(
     'type' => 'userhelp',
     'name' => $t('User help'),
@@ -71,6 +87,7 @@ function bibdk_help_install() {
     $instance['bundle'] = $userhelp['type'];
     field_create_instance($instance);
   }
+
 }
 
 
@@ -80,7 +97,7 @@ function bibdk_help_install() {
 function bibdk_help_enable() {
   $search_active_modules = variable_get('search_active_modules');
   $search_active_modules['bibdk_help'] = 'bibdk_help';
-  variable_put('search_active_modules');
+  variable_set('search_active_modules',$search_active_modules);
 }
 
 

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ * Code for bibdk_help search.
+ */
 include_once('bibdk_help.search.inc');
 
 /**

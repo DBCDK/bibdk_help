@@ -1,0 +1,45 @@
+<?php
+/**
+* Tests the functionality of bibdk user help content types.
+*/
+class BibdkHelpTestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Bibdk help',
+      'description' => 'Bibdk help test.',
+      'group' => 'bibliotek.dk',
+    );
+  }
+
+  public function setUp() {
+
+    // Enable any modules required for the test
+    parent::setUp('bibdk_help', 'search');
+
+    menu_rebuild();
+
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser(array(
+      'administer search',
+      'administer blocks',
+      'search content',
+      ));
+    $this->drupalLogin($this->privileged_user);
+
+  }
+
+  /**
+    * Tests creation of a bibliotek.dk help node.
+    */
+  public function testBibdkHelpCreate() {
+    // Create node to edit.
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    $edit["body[und][0][value]"] = $this->randomName(16);
+    $this->drupalPost('node/add/userhelp', $edit, t('Save'));
+    $this->assertText(t('User help @title has been created.', array('@title' => $edit['title'])));
+  }
+
+}
