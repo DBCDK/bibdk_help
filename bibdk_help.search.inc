@@ -60,11 +60,15 @@ function bibdk_help_search_form_search($query) {
 }
 
 
+/**
+ * Implements hook_menu_alter().
+ */
 function bibdk_help_menu_alter(&$items) {
   // remove user_help search from search tab.
   unset($items['search/user_help']);
   unset($items['search/user_help/%menu_tail']);
 }
+
 
 /**
  * Implements hook_search_execute().
@@ -90,6 +94,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 
   // Only continue if the first pass query matches.
   if (!$query->executeFirstPass()) {
+    drupal_set_message(t('Search returned no results.'), 'notice');
     return array();
   }
 
@@ -128,6 +133,10 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
       'score' => $item->calculated_score,
       'snippet' => search_excerpt($keys, $node->rendered),
     );
+  }
+
+  if ( !$results ) {
+    drupal_set_message(t('Search returned no results.'), 'notice');
   }
 
   return array(

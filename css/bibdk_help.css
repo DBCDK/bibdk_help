@@ -1,9 +1,9 @@
-ul#bibdk-help-menu {
+ul#user-help-menu {
     list-style: none outside none;
     margin-right: 0.5em;
 }
 
-ul#bibdk-help-menu li {
+ul#user-help-menu li {
     display: block;
     float: right;
     margin-right: 0.5em;

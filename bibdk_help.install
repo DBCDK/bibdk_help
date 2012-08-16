@@ -33,6 +33,13 @@ function bibdk_help_install() {
   );
   menu_save($help_menu);
 
+  $item = array(
+    'link_path'  => drupal_get_normal_path('help'),
+    'link_title' => t('Help'),
+    'menu_name'  => 'user-help-menu',
+  );
+  menu_link_save($item);
+
   // configure default menu for user help content.
   $menu_options_userhelp['0'] = 'main-menu';
   $menu_options_userhelp['1'] = 'user-help-menu';
@@ -105,6 +112,9 @@ function bibdk_help_enable() {
  * Implements hook_uninstall().
  */
 function bibdk_help_uninstall() {
+
+  menu_link_delete(NULL, 'help');
+
   $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
   $result = db_query($sql, array(':type' => 'userhelp'));
   $nids = array();

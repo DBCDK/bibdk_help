@@ -3,10 +3,11 @@
  * @file
  * Template file for bibdk_help_menu
  */
-
 ?>
-<ul id="bibdk-help-menu">
+<ul id="user-help-menu">
+<?php foreach ($links as $link) { ?>
   <li>
-    <a href="/help" class="bibdk-popup-link"><?php print $text; ?></a>
+    <?php print l($link['title'], $link['href'], $link); ?>
   </li>
+<?php } ?>
 </ul>
