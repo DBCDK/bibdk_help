@@ -69,7 +69,7 @@ $display->panels = array();
   $pane->pid = 'new-1';
   $pane->panel = 'middle';
   $pane->type = 'block';
-  $pane->subtype = 'search-form';
+  $pane->subtype = 'bibdk_help-bibdk-help-form';
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
@@ -120,7 +120,6 @@ $display->hide_title = PANELS_TITLE_FIXED;
 $display->title_pane = '0';
 $handler->conf['display'] = $display;
 $page->default_handlers[$handler->name] = $handler;
-
 
   $pages['user_help'] = $page;
 
