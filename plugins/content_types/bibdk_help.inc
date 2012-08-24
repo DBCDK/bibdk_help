@@ -50,6 +50,12 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
     $nid = (int)$data->nid;
   }
 
+  drupal_add_css(
+    drupal_get_path('module', 'bibdk_help') . '/css/bibdk_help.css',
+    array('group' => CSS_DEFAULT,
+    'every_page' => TRUE)
+  );
+
   // The title actually used in rendering.
   $block->title = "Bibliotek.dk user help content type";
 
@@ -93,12 +99,6 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
   }
 
   $block->content = $renderable_array;
-
-  drupal_add_css(
-    drupal_get_path('module', 'bibdk_help') . '/css/bibdk_help.css',
-    array('group' => CSS_DEFAULT,
-    'every_page' => TRUE)
-  );
 
   return $block;
 
