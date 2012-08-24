@@ -94,6 +94,12 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
 
   $block->content = $renderable_array;
 
+  drupal_add_css(
+    drupal_get_path('module', 'bibdk_help') . '/css/bibdk_help.css',
+    array('group' => CSS_DEFAULT,
+    'every_page' => TRUE)
+  );
+
   return $block;
 
 }

@@ -44,6 +44,10 @@ div.block-bibdk-help {
     margin-bottom: 0px;
 }
 
+#bibdk-help-search-form {
+  clear: both;
+}
+
 .page-help .form-item-search-block-form,
 .page-help #edit-actions {
   float: left;
