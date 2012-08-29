@@ -55,7 +55,7 @@ function bibdk_help_install() {
   // add first level menu items for user help.
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('help/content'),
     'link_title'  => t('Indhold'),
     'router_path' => 'help',
     'expanded'    => '1',
@@ -67,7 +67,7 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('help/search'),
     'link_title'  => t('Søgning'),
     'router_path' => 'help',
     'expanded'    => '1',
@@ -79,7 +79,7 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('help/ordering'),
     'link_title'  => t('Bestilling'),
     'router_path' => 'help',
     'expanded'    => '1',
@@ -91,7 +91,7 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('help/news'),
     'link_title'  => t('Nyheder'),
     'router_path' => 'help',
     'expanded'    => '1',
@@ -103,7 +103,7 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('help/technical'),
     'link_title'  => t('Teknik'),
     'router_path' => 'help',
     'expanded'    => '1',
@@ -115,7 +115,7 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('help/personal_data'),
     'link_title'  => t('Personlige data'),
     'router_path' => 'help',
     'expanded'    => '1',
@@ -204,9 +204,16 @@ function bibdk_help_uninstall() {
 
   // Delete custom menu.
   $help_menu = array(
-    'menu_name'   => 'user-help-menu',
-    'title'       => 'User help',
+    'menu_name'   => 'user-help-about-menu',
+    'title'       => 'Bibliotek.dk user help about menu',
     'description' => 'User help list, about and contact links',
+  );
+  menu_delete($help_menu);
+
+  $help_menu = array(
+    'menu_name'   => 'user-help-menu',
+    'title'       => 'Bibliotek.dk user help menu',
+    'description' => 'User help menu',
   );
   menu_delete($help_menu);
 
