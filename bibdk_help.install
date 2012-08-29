@@ -45,7 +45,7 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-about-menu',
     'link_path'   => drupal_get_normal_path('help'),
-    'link_title'  => t('Help'),
+    'link_title'  => $t('Help'),
     'router_path' => 'help',
     'depth'       => '1',
     'customized'  => '1',
@@ -56,10 +56,10 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-menu',
     'link_path'   => drupal_get_normal_path('help/content'),
-    'link_title'  => t('Indhold'),
+    'link_title'  => $t('Indhold'),
     'router_path' => 'help',
-    'expanded'    => '1',
-    'weight'      => '0',
+    'expanded'    => TRUE,
+    'weight'      => 0,
     'depth'       => '1',
     'customized'  => '1',
   );
@@ -68,10 +68,10 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-menu',
     'link_path'   => drupal_get_normal_path('help/search'),
-    'link_title'  => t('Søgning'),
+    'link_title'  => $t('Sogning'),
     'router_path' => 'help',
-    'expanded'    => '1',
-    'weight'      => '1',
+    'expanded'    => TRUE,
+    'weight'      => 1,
     'depth'       => '1',
     'customized'  => '1',
   );
@@ -80,10 +80,10 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-menu',
     'link_path'   => drupal_get_normal_path('help/ordering'),
-    'link_title'  => t('Bestilling'),
+    'link_title'  => $t('Bestilling'),
     'router_path' => 'help',
-    'expanded'    => '1',
-    'weight'      => '2',
+    'expanded'    => TRUE,
+    'weight'      => 2,
     'depth'       => '1',
     'customized'  => '1',
   );
@@ -92,10 +92,10 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-menu',
     'link_path'   => drupal_get_normal_path('help/news'),
-    'link_title'  => t('Nyheder'),
+    'link_title'  => $t('Nyheder'),
     'router_path' => 'help',
-    'expanded'    => '1',
-    'weight'      => '3',
+    'expanded'    => TRUE,
+    'weight'      => 3,
     'depth'       => '1',
     'customized'  => '1',
   );
@@ -104,10 +104,10 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-menu',
     'link_path'   => drupal_get_normal_path('help/technical'),
-    'link_title'  => t('Teknik'),
+    'link_title'  => $t('Teknik'),
     'router_path' => 'help',
-    'expanded'    => '1',
-    'weight'      => '4',
+    'expanded'    => TRUE,
+    'weight'      => 4,
     'depth'       => '1',
     'customized'  => '1',
   );
@@ -116,10 +116,10 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-menu',
     'link_path'   => drupal_get_normal_path('help/personal_data'),
-    'link_title'  => t('Personlige data'),
+    'link_title'  => $t('Personlige data'),
     'router_path' => 'help',
-    'expanded'    => '1',
-    'weight'      => '5',
+    'expanded'    => TRUE,
+    'weight'      => 5,
     'depth'       => '1',
     'customized'  => '1',
   );
