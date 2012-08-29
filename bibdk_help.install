@@ -50,9 +50,81 @@ function bibdk_help_install() {
     'depth'       => '1',
     'customized'  => '1',
   );
-  if ( $link_save = menu_link_save($item) ) {
-    watchdog('bibdk_help', t('Add "help" (mlid : @link_save) to User help about menu'), array('@link_save'=>$link_save), WATCHDOG_NOTICE);
-  }
+  menu_link_save($item);
+
+  // add first level menu items for user help.
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => t('Indhold'),
+    'router_path' => 'help',
+    'expanded'    => '1',
+    'weight'      => '0',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => t('Søgning'),
+    'router_path' => 'help',
+    'expanded'    => '1',
+    'weight'      => '1',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => t('Bestilling'),
+    'router_path' => 'help',
+    'expanded'    => '1',
+    'weight'      => '2',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => t('Nyheder'),
+    'router_path' => 'help',
+    'expanded'    => '1',
+    'weight'      => '3',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => t('Teknik'),
+    'router_path' => 'help',
+    'expanded'    => '1',
+    'weight'      => '4',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => t('Personlige data'),
+    'router_path' => 'help',
+    'expanded'    => '1',
+    'weight'      => '5',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
   menu_cache_clear_all();
 
   // configure default menu for user help content.
