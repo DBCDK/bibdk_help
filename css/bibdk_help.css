@@ -1,9 +1,9 @@
-ul#user-help-menu {
+ul#user-help-about-menu {
     list-style: none outside none;
     margin-right: 0.5em;
 }
 
-ul#user-help-menu li {
+ul#user-help-about-menu li {
     display: block;
     float: right;
     margin-right: 0.5em;
@@ -13,53 +13,66 @@ div.block-bibdk-help {
     float: left;
 }
 
-
-.page-help .node-userhelp h2.node-title {
-    font-size: 1.1em;
-    margin-bottom: 0em;
-}
-
-.page-help .node-userhelp div.content {
-    margin-left: 1.5em;
-}
-
-.page-help div#region-help {
-    float: right;
-}
-
-.page-help section#section-content {
+.node-type-userhelp section#section-content {
   clear: both;
 }
 
-.page-help div#breadcrumb {
+.page-help div.tabs,
+.node-type-userhelp div.tabs {
+  display: none;
 }
 
-.page-help div#breadcrumb .trail {
+.page-help div.block-bibdk-help {
     float: none;
 }
 
-.page-help ul,
-.page-help h2,
-.page-help fieldset {
-    margin-bottom: 0px;
+.page-help#breadcrumb,
+.node-type-userhelp #breadcrumb {
+  height: 1.6em;
 }
 
-#bibdk-help-search-form {
+form#bibdk-help-search-form {
+  padding: 0.5em 0;
   clear: both;
 }
 
-.page-help .form-item-search-block-form,
-.page-help #edit-actions {
-  float: left;
-  margin-right: 1em;
-}
-
-.page-help #edit-userhelp .form-item input {
-  width: 16em;
-  margin-right: 1em;
-}
-
-.page-help #edit-userhelp .form-item,
-.page-help #edit-userhelp .form-actions {
+form#bibdk-help-search-form legend {
+  margin: 0 1em 0 0;
   float: left;
 }
+
+form#bibdk-help-search-form .form-item,
+form#bibdk-help-search-form .form-actions {
+  margin: 0 1em 0 0;
+  float: left;
+}
+
+form#bibdk-help-search-form input.form-text {
+  width: 12em;
+}
+
+#bibdk-user-help-menu {
+  border-top: 1px solid #666;
+}
+
+#bibdk-user-help-menu li {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  float: left;
+  width: 33%;
+}
+
+#bibdk-user-help-menu li:nth-child(4n) {
+  clear: left;
+}
+
+#bibdk-user-help-menu li li {
+  margin-left: 1em;
+  margin-right: 0;
+  width: auto;
+  float: none;
+}
+

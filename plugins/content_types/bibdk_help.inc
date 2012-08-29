@@ -57,7 +57,7 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
   );
 
   // The title actually used in rendering.
-  $block->title = "Bibliotek.dk user help content type";
+  $block->title = "Bibliotek.dk user help";
 
   // Build Breadcrumbs
   $breadcrumb[] = l('Help', 'help');
@@ -68,6 +68,8 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
       drupal_set_message(t('The help node does not exist.'), 'warning');
       return $block;
     }
+    // The title actually used in rendering.
+    $block->title = $node->title;
     $breadcrumb[] = l($node->title, current_path());
     drupal_set_breadcrumb($breadcrumb);
     $nodeview = node_view($node, 'full');
@@ -77,6 +79,7 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
     return $block;
   }
 
+/*
   $renderable_array = array();
   $sql = 'SELECT nid FROM {node} n WHERE n.type = :type AND n.status = :status';
   $result = db_query($sql,
@@ -85,11 +88,9 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
       ':status' => 1,
     )
   );
-
   $renderable_array['explanation'] = array(
     '#markup' => '<p>' . t("This list is a list of help texts.") . '</p>',
   );
-
   foreach ($result as $row) {
     $node = node_load($row->nid);
     $nodeview = node_view($node, 'bibdk_help_list');
@@ -97,10 +98,9 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
     $nodeview['#contextual_links']['node'][0] = 'help';
     $renderable_array['node_list'][]= $nodeview;
   }
-
   $block->content = $renderable_array;
-
   return $block;
+*/
 
 }
 

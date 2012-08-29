@@ -27,15 +27,23 @@ function bibdk_help_install() {
 
   // Custom menu for user help content.
   $help_menu = array(
-    'menu_name'   => 'user-help-menu',
-    'title'       => 'User help',
+    'menu_name'   => 'user-help-about-menu',
+    'title'       => 'Bibliotek.dk user help about menu',
     'description' => 'User help list, about and contact links',
+  );
+  menu_save($help_menu);
+
+  // Custom menu for user help content.
+  $help_menu = array(
+    'menu_name'   => 'user-help-menu',
+    'title'       => 'Bibliotek.dk user help menu',
+    'description' => 'User help menu',
   );
   menu_save($help_menu);
 
   // add menu item for user help frontpage.
   $item = array(
-    'menu_name'   => 'user-help-menu',
+    'menu_name'   => 'user-help-about-menu',
     'link_path'   => drupal_get_normal_path('help'),
     'link_title'  => t('Help'),
     'router_path' => 'help',
@@ -43,13 +51,13 @@ function bibdk_help_install() {
     'customized'  => '1',
   );
   if ( $link_save = menu_link_save($item) ) {
-    watchdog('bibdk_help', t('Add "help" (mlid : @link_save) to User help menu'), array('@link_save'=>$link_save), WATCHDOG_NOTICE);
+    watchdog('bibdk_help', t('Add "help" (mlid : @link_save) to User help about menu'), array('@link_save'=>$link_save), WATCHDOG_NOTICE);
   }
   menu_cache_clear_all();
 
   // configure default menu for user help content.
-  $menu_options_userhelp['0'] = 'main-menu';
-  $menu_options_userhelp['1'] = 'user-help-menu';
+  $menu_options_userhelp['0'] = 'user-help-menu';
+  $menu_options_userhelp['1'] = 'user-help-about-menu';
   variable_set('menu_options_userhelp',$menu_options_userhelp);
   $menu_parent_userhelp = 'user-help-menu:0';
   variable_set('menu_parent_userhelp',$menu_parent_userhelp);
@@ -60,7 +68,7 @@ function bibdk_help_install() {
     'base' => 'node_content',
     'description' => $t('User help node type.'),
     'title_label' => $t('User help title'),
-  'custom' => TRUE,
+    'custom' => TRUE,
   );
 
   // Complete the node type definition by setting any defaults not explicitly declared above.
@@ -97,7 +105,7 @@ function bibdk_help_install() {
   // Create all the instances for our fields.
   // http://api.drupal.org/api/function/field_create_instance/7
   foreach (_bibdk_help_installed_instances() as $instance) {
-    $instance['entity_type'] = 'help';
+    $instance['entity_type'] = 'node';
     $instance['bundle'] = $userhelp['type'];
     field_create_instance($instance);
   }
@@ -166,6 +174,7 @@ function bibdk_help_uninstall() {
 }
 
 
+
 /**
  * Returns a structured array defining the fields created by this content type.
  *
@@ -173,31 +182,8 @@ function bibdk_help_uninstall() {
  *  An associative array specifying the fields we wish to add to our new node type.
  */
 function _bibdk_help_installed_fields() {
-  $t = get_t();
-  return array(
-/*
-    'bibdk_help_color' => array(
-      'field_name' => 'bibdk_help_color',
-      'cardinality' => 3,
-      'type'        => 'text',
-      'settings'    => array(
-        'max_length' => 60,
-      ),
-    ),
-    'bibdk_help_quantity' => array(
-      'field_name'  => 'bibdk_help_quantity',
-      'cardinality' => 1,
-      'type'        => 'text',
-    ),
-    'bibdk_help_image' => array(
-      'field_name' => 'bibdk_help_image',
-      'type'       => 'image',
-      'cardinality' => 1,
-    ),
-*/
-  );
+  return array();
 }
-
 
 /**
  * Returns a structured array defining the instances for this content type.
@@ -206,51 +192,5 @@ function _bibdk_help_installed_fields() {
  *  An associative array specifying the instances we wish to add to our node type.
  */
 function _bibdk_help_installed_instances() {
-  $t = get_t();
-  return array(
-/*
-    'bibdk_help_color' => array(
-      'field_name' => 'bibdk_help_color',
-      'label'       => $t('The colors available for this object.'),
-      'widget'      => array(
-        'type'    => 'text_textfield',
-      ),
-      'display' => array(
-        'bibdk_help_list' => array(
-          'label' => 'hidden',
-          'type' => 'bibdk_help_colors',
-        ),
-      ),
-    ),
-    'bibdk_help_quantity' => array(
-      'field_name'  => 'bibdk_help_quantity',
-      'label' => $t('Quantity required'),
-      'type'        => 'text',
-      'widget'      => array(
-        'type'    => 'text_textfield',
-      ),
-      'display' => array(
-        'bibdk_help_list' => array(
-          'label' => 'hidden',
-          'type' => 'hidden',
-        ),
-      ),
-    ),
-    'bibdk_help_image' => array(
-      'field_name'  => 'bibdk_help_image',
-      'label'       => $t('Upload an image:'),
-      'required'    => FALSE,
-      'widget' => array(
-        'type'    => 'image_image',
-        'weight'  => 2.10,
-      ),
-      'display' => array(
-        'bibdk_help_list' => array(
-          'label' => 'hidden',
-          'type' => 'image_link_content__thumbnail',
-        ),
-      ),
-    ),
-*/
-  );
+  return array();
 }

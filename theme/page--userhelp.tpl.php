@@ -12,7 +12,6 @@
       <div<?php print $attributes; ?>>
         <?php if (isset($page['header'])) : ?>
           <?php print render($page['header']['header']['branding']); ?>
-          <?php print render($page['header']['header']['help']); ?>
         <?php endif; ?>
 
         <?php if (isset($page['content'])) : ?>

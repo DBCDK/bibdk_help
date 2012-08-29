@@ -48,7 +48,6 @@ function ctools_bibdk_help_context_create_bibdk_help_context($empty, $data = NUL
 
   if ($conf) {
     if (!empty($data)) {
-      dpm($data);
       $context->data = new stdClass();
       // For this simple item we'll just create our data by stripping non-alpha and
       // adding '_from_configuration_item_1' to it.
