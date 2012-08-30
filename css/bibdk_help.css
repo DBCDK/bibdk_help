@@ -22,10 +22,6 @@ div.block-bibdk-help {
   display: none;
 }
 
-.page-help div.block-bibdk-help {
-    float: none;
-}
-
 .page-help#breadcrumb,
 .node-type-userhelp #breadcrumb {
   height: 1.6em;
@@ -63,16 +59,19 @@ form#bibdk-help-search-form input.form-text {
   padding-right: 0;
   float: left;
   width: 33%;
+  max-width: 33%;
+  font-weight: bold;
+}
+
+#bibdk-user-help-menu li li {
+  font-weight: normal;
+  margin-left: 1em;
+  margin-right: 0;
+  width: auto;
+  max-width: none;
+  float: none;
 }
 
 #bibdk-user-help-menu li:nth-child(4n) {
   clear: left;
 }
-
-#bibdk-user-help-menu li li {
-  margin-left: 1em;
-  margin-right: 0;
-  width: auto;
-  float: none;
-}
-
