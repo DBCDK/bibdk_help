@@ -1,9 +1,9 @@
-ul#user-help-about-menu {
+ul#user-help-topbar-menu {
     list-style: none outside none;
     margin-right: 0.5em;
 }
 
-ul#user-help-about-menu li {
+ul#user-help-topbar-menu li {
     display: block;
     float: right;
     margin-right: 0.5em;

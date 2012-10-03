@@ -24,8 +24,8 @@ function bibdk_help_help($path, $arg) {
  * Implements hook_block_info().
  */
 function bibdk_help_block_info() {
-  $blocks['bibdk-help-about-menu'] = array(
-      'info' => t('Bibdk user help about block'),
+  $blocks['bibdk-help-topbar-menu'] = array(
+      'info' => t('Bibdk user help topbar block'),
       'cache' => DRUPAL_CACHE_PER_PAGE,
     );
   $blocks['bibdk-help-form'] = array(
@@ -42,23 +42,23 @@ function bibdk_help_block_info() {
 function bibdk_help_block_view($delta = '') {
   $block = array();
   switch ($delta) {
-    case 'bibdk-help-about-menu':
+    case 'bibdk-help-topbar-menu':
       drupal_add_css(
         drupal_get_path('module', 'bibdk_help') . '/css/bibdk_help.css',
         array('group' => CSS_DEFAULT,
         'every_page' => TRUE)
       );
-      $block['subject'] = t('Bibliotek.dk user help about links');
-      $list = array('links' => menu_navigation_links('user-help-about-menu'),
-                    'attributes' => array('class'=> array('menu', 'user-help-about-menu'))
+      $block['subject'] = t('Bibliotek.dk user help topbar links');
+      $list = array('links' => menu_navigation_links('user-help-topbar-menu'),
+                    'attributes' => array('class'=> array('menu', 'user-help-topbar-menu'))
                    );
       // first item in list ('Help') is defined in bibdk_help.install
       foreach ($list['links'] as $key => $menu_item) {
-      // set class to make use of popup javascript
+        // set class to make use of popup javascript
         $list['links'][$key]['attributes']['class'][] = 'bibdk-popup-link';
         $list['links'][$key]['attributes']['rel'][] = 'userhelp';
       }
-      $block['content'] = theme('theme-bibdk-help-about-menu',$list);
+      $block['content'] = theme('theme-bibdk-help-topbar-menu',$list);
       break;
     case 'bibdk-help-form':
       $block['subject'] = t('Bibliotek.dk user help search');
@@ -68,19 +68,6 @@ function bibdk_help_block_view($delta = '') {
   return $block;
 }
 
-
-
-/**
- * Implements hook_entity_info_alter().
- *
- */
-function bibdk_help_node_presave($node){
-  if ($node->type ==='userhelp'){
-    if ( !$node->path['alias'] ) {
-      $node->path['alias'] = str_replace('node/','help/',$node->path['source']);
-    }
-  }
-}
 
 
 /**
@@ -103,8 +90,8 @@ function bibdk_help_entity_info_alter(&$entity_info) {
 function bibdk_help_theme($existing, $type, $theme, $path) {
   $path = drupal_get_path('module', 'bibdk_help') . '/theme';
   return array(
-   'theme-bibdk-help-about-menu' => array(
-     'template'    => 'bibdk-help-about-menu',
+   'theme-bibdk-help-topbar-menu' => array(
+     'template'    => 'bibdk-help-topbar-menu',
      'path'        => $path,
    ),
   );
