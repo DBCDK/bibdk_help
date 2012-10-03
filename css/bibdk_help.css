@@ -5,7 +5,7 @@ ul#user-help-topbar-menu {
 
 ul#user-help-topbar-menu li {
     display: block;
-    float: right;
+    float: left;
     margin-right: 0.5em;
 }
 

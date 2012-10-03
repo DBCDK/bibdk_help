@@ -69,6 +69,33 @@ function bibdk_help_block_view($delta = '') {
 }
 
 
+/**
+ * Implements hook_node_presave().
+ *
+ */
+function bibdk_help_node_presave($node){
+  if ($node->type ==='userhelp'){
+    if ( !$node->path['alias'] ) {
+      $node->path['alias'] = str_replace('node/','help/',$node->path['source']);
+    }
+  }
+}
+
+
+/**
+ * Implements hook_node_insert().
+ *
+ */
+function bibdk_help_node_insert($node){
+  if ($node->type ==='userhelp'){
+    if ( !$node->path['alias'] ) {
+      $node->path['alias'] = 'help/' . $node->nid;
+    }
+    $node->is_new = FALSE;
+    node_save($node);
+  }
+}
+
 
 /**
  * Implements hook_entity_info_alter().
