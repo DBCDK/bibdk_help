@@ -1,0 +1,12 @@
+name = Bibliotek.dk user help
+description = Provide a user help function for Bibliotek.dk.
+core = 7.x
+version = 0.1
+package = "Bibliotek.dk"
+
+dependencies[] = ctools
+dependencies[] = path
+dependencies[] = panels
+dependencies[] = page_manager
+
+files[] = bibdk_help.test
