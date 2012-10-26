@@ -5,7 +5,6 @@ version = 0.1
 package = "Bibliotek.dk"
 
 dependencies[] = ctools
-dependencies[] = path
 dependencies[] = panels
 dependencies[] = page_manager
 

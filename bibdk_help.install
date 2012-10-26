@@ -44,9 +44,9 @@ function bibdk_help_install() {
   // add menu item for user help frontpage.
   $item = array(
     'menu_name'   => 'user-help-topbar-menu',
-    'link_path'   => drupal_get_normal_path('help'),
+    'link_path'   => drupal_get_normal_path('overlay/help'),
     'link_title'  => $t('Help'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'depth'       => '1',
     'customized'  => '1',
   );
@@ -55,9 +55,9 @@ function bibdk_help_install() {
   // add first level menu items for user help.
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help/content'),
+    'link_path'   => drupal_get_normal_path('overlay/help/content'),
     'link_title'  => $t('Indhold'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'expanded'    => TRUE,
     'weight'      => 0,
     'depth'       => '1',
@@ -67,9 +67,9 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help/search'),
+    'link_path'   => drupal_get_normal_path('overlay/help/search'),
     'link_title'  => $t('Sogning'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'expanded'    => TRUE,
     'weight'      => 1,
     'depth'       => '1',
@@ -79,9 +79,9 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help/ordering'),
+    'link_path'   => drupal_get_normal_path('overlay/help/ordering'),
     'link_title'  => $t('Bestilling'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'expanded'    => TRUE,
     'weight'      => 2,
     'depth'       => '1',
@@ -91,9 +91,9 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help/news'),
+    'link_path'   => drupal_get_normal_path('overlay/help/news'),
     'link_title'  => $t('Nyheder'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'expanded'    => TRUE,
     'weight'      => 3,
     'depth'       => '1',
@@ -103,9 +103,9 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help/technical'),
+    'link_path'   => drupal_get_normal_path('overlay/help/technical'),
     'link_title'  => $t('Teknik'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'expanded'    => TRUE,
     'weight'      => 4,
     'depth'       => '1',
@@ -115,9 +115,9 @@ function bibdk_help_install() {
 
   $item = array(
     'menu_name'   => 'user-help-menu',
-    'link_path'   => drupal_get_normal_path('help/personal_data'),
+    'link_path'   => drupal_get_normal_path('overlay/help/personal_data'),
     'link_title'  => $t('Personlige data'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'expanded'    => TRUE,
     'weight'      => 5,
     'depth'       => '1',
@@ -280,7 +280,7 @@ function bibdk_help_update_7000(&$sandbox) {
     'menu_name'   => 'user-help-topbar-menu',
     'link_path'   => drupal_get_normal_path('help'),
     'link_title'  => $t('Help'),
-    'router_path' => 'help',
+    'router_path' => 'overlay/help',
     'depth'       => '1',
     'customized'  => '1',
   );
