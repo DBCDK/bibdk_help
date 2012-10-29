@@ -299,6 +299,103 @@ function bibdk_help_update_7000(&$sandbox) {
 
 
 /**
+ * 'about menu' is renamed 'topbar menu'.
+ */
+function bibdk_help_update_7001(&$sandbox) {
+  $t = get_t();
+  // menu items created during install go poof, after the path has changed.
+
+  // add menu item for user help frontpage.
+  $item = array(
+    'menu_name'   => 'user-help-topbar-menu',
+    'link_path'   => drupal_get_normal_path('help'),
+    'link_title'  => $t('Help'),
+    'router_path' => 'overlay/help',
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  // add first level menu items for user help.
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('overlay/help/content'),
+    'link_title'  => $t('Indhold'),
+    'router_path' => 'overlay/help',
+    'expanded'    => TRUE,
+    'weight'      => 0,
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('overlay/help/search'),
+    'link_title'  => $t('Sogning'),
+    'router_path' => 'overlay/help',
+    'expanded'    => TRUE,
+    'weight'      => 1,
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('overlay/help/ordering'),
+    'link_title'  => $t('Bestilling'),
+    'router_path' => 'overlay/help',
+    'expanded'    => TRUE,
+    'weight'      => 2,
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('overlay/help/news'),
+    'link_title'  => $t('Nyheder'),
+    'router_path' => 'overlay/help',
+    'expanded'    => TRUE,
+    'weight'      => 3,
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('overlay/help/technical'),
+    'link_title'  => $t('Teknik'),
+    'router_path' => 'overlay/help',
+    'expanded'    => TRUE,
+    'weight'      => 4,
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'menu_name'   => 'user-help-menu',
+    'link_path'   => drupal_get_normal_path('overlay/help/personal_data'),
+    'link_title'  => $t('Personlige data'),
+    'router_path' => 'overlay/help',
+    'expanded'    => TRUE,
+    'weight'      => 5,
+    'depth'       => '1',
+    'customized'  => '1',
+  );
+  menu_link_save($item);
+
+  menu_cache_clear_all();
+
+}
+
+
+
+/**
  * Returns a structured array defining the fields created by this content type.
  *
  * @return
