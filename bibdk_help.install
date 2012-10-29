@@ -297,13 +297,19 @@ function bibdk_help_update_7000(&$sandbox) {
 }
 
 
-
 /**
- * 'about menu' is renamed 'topbar menu'.
+ * Was the update hooks nenumbered a some point?.
  */
 function bibdk_help_update_7001(&$sandbox) {
+
+}
+
+
+/**
+ * menu items created during install go poof, after the path has changed.
+ */
+function bibdk_help_update_7002(&$sandbox) {
   $t = get_t();
-  // menu items created during install go poof, after the path has changed.
 
   // add menu item for user help frontpage.
   $item = array(
