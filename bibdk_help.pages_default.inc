@@ -11,6 +11,28 @@
 function bibdk_help_default_page_manager_pages() {
   $pages = array();
 
+$page = new stdClass();
+$page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+$page->api_version = 1;
+$page->name = 'user_help';
+$page->task = 'page';
+$page->admin_title = 'User help';
+$page->admin_description = 'This page is for showing the user help nodes in a pop-up window.';
+$page->path = 'overlay/help/!bibdk_help_context';
+$page->access = array();
+$page->menu = array();
+$page->arguments = array(
+  'bibdk_help_context' => array(
+    'id' => 1,
+    'identifier' => 'bibdk help: Node ID',
+    'name' => 'bibdk_help_arg',
+    'settings' => array(),
+  ),
+);
+$page->conf = array(
+  'admin_paths' => FALSE,
+);
+$page->default_handlers = array();
 $handler = new stdClass();
 $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
 $handler->api_version = 1;
@@ -98,7 +120,7 @@ $display->panels = array();
   $pane->pid = 'new-3';
   $pane->panel = 'middle';
   $pane->type = 'block';
-  $pane->subtype = 'menu-user-help-menu';
+  $pane->subtype = 'bibdk_help-bibdk-help-popup-menu';
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
@@ -109,10 +131,7 @@ $display->panels = array();
   $pane->style = array(
     'settings' => NULL,
   );
-  $pane->css = array(
-    'css_id' => 'bibdk-user-help-menu',
-    'css_class' => '',
-  );
+  $pane->css = array();
   $pane->extras = array();
   $pane->position = 2;
   $pane->locks = array();
@@ -121,8 +140,7 @@ $display->panels = array();
 $display->hide_title = PANELS_TITLE_FIXED;
 $display->title_pane = '0';
 $handler->conf['display'] = $display;
-
-  $page->default_handlers[$handler->name] = $handler;
+$page->default_handlers[$handler->name] = $handler;
 
   $pages['node_view'] = $page;
 
