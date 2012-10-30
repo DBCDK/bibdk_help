@@ -122,7 +122,21 @@ $display->panels = array();
   $pane->type = 'block';
   $pane->subtype = 'bibdk_help-bibdk-help-popup-menu';
   $pane->shown = TRUE;
-  $pane->access = array();
+  $pane->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'site_language',
+        'settings' => array(
+          'language' => array(
+            'da' => 'da',
+            'default' => 0,
+            'en-gb' => 0,
+          ),
+        ),
+        'not' => FALSE,
+      ),
+    ),
+  );
   $pane->configuration = array(
     'override_title' => 1,
     'override_title_text' => '',
@@ -137,6 +151,41 @@ $display->panels = array();
   $pane->locks = array();
   $display->content['new-3'] = $pane;
   $display->panels['middle'][2] = 'new-3';
+  $pane = new stdClass();
+  $pane->pid = 'new-4';
+  $pane->panel = 'middle';
+  $pane->type = 'block';
+  $pane->subtype = 'bibdk_help-bibdk-help-popup-menu-eng';
+  $pane->shown = TRUE;
+  $pane->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'site_language',
+        'settings' => array(
+          'language' => array(
+            'en-gb' => 'en-gb',
+            'default' => 0,
+            'da' => 0,
+          ),
+        ),
+        'not' => FALSE,
+      ),
+    ),
+  );
+  $pane->configuration = array(
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $display->content['new-4'] = $pane;
+  $display->panels['middle'][3] = 'new-4';
 $display->hide_title = PANELS_TITLE_FIXED;
 $display->title_pane = '0';
 $handler->conf['display'] = $display;
