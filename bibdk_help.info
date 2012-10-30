@@ -7,5 +7,7 @@ package = "Bibliotek.dk"
 dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = page_manager
+dependencies[] = i18n
+dependencies[] = i18n_menu
 
 files[] = bibdk_help.test
