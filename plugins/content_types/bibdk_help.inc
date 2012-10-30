@@ -78,7 +78,7 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
   $block->title = "Bibliotek.dk user help";
 
   // Build Breadcrumbs
-  $breadcrumb[] = l('Help', 'help');
+  $breadcrumb[] = l(t('Help'), 'help');
 
   if ( $nid ) {
     $node = node_load($nid);

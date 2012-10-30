@@ -11,7 +11,7 @@ include_once('bibdk_help.search.inc');
  * Implements hook_help().
  */
 function bibdk_help_help($path, $arg) {
-  switch($path){
+  switch ($path) {
     case 'admin/help#bibdk_help';
       $file = drupal_get_path('module', 'bibdk_help') . "/overlay/help/bibdk_help.html";
       return $output = file_get_contents($file);
@@ -67,7 +67,7 @@ function bibdk_help_block_view($delta = '') {
       $block['subject'] = t('Bibliotek.dk user help topbar links %lang', array('%lang' => ($language) ? '(' . $language . ')' : ''));
       $menuname = 'user-help-topbar-menu' . (($language) ? '-' . $language : '');
       $list = array('links' => menu_navigation_links($menuname),
-                    'attributes' => array('class'=> array('menu', 'user-help-topbar-menu'))
+                    'attributes' => array('class' => array('menu', 'user-help-topbar-menu'))
                    );
       // first item in list ('Help') is defined in bibdk_help.install
       foreach ($list['links'] as $key => $menu_item) {
@@ -75,7 +75,7 @@ function bibdk_help_block_view($delta = '') {
         $list['links'][$key]['attributes']['class'][] = 'bibdk-popup-link';
         $list['links'][$key]['attributes']['rel'][] = 'userhelp';
       }
-      $block['content'] = theme('theme-bibdk-help-topbar-menu',$list);
+      $block['content'] = theme('theme-bibdk-help-topbar-menu', $list);
       break;
 
     case 'bibdk-help-popup-menu-eng':
@@ -92,7 +92,7 @@ function bibdk_help_block_view($delta = '') {
         // set path to overlay/help/%nodeid
         $menu[$key] =  _replace_link($menu_item);
       }
-      $menu['#attributes'] = array('class'=> array('menu', 'user-help-menu'));
+      $menu['#attributes'] = array('class' => array('menu', 'user-help-menu'));
       $block['content'] = drupal_render($menu);
       break;
 
@@ -106,7 +106,7 @@ function bibdk_help_block_view($delta = '') {
 
 function _replace_link($menu_item) {
   if ( isset($menu_item['#href']) ) {
-    $menu_item['#href'] = str_replace('node/','overlay/help/',$menu_item['#href']);
+    $menu_item['#href'] = str_replace('node/', 'overlay/help/', $menu_item['#href']);
   }
   if ( !empty($menu_item['#below']) ) {
     foreach ($menu_item['#below'] as $key => $menu_item_below) {

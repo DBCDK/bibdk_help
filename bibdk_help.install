@@ -148,9 +148,9 @@ function bibdk_help_install() {
   $menu_options_userhelp['1'] = 'user-help-menu-eng';
   $menu_options_userhelp['2'] = 'user-help-topbar-menu';
   $menu_options_userhelp['3'] = 'user-help-topbar-menu-eng';
-  variable_set('menu_options_userhelp',$menu_options_userhelp);
+  variable_set('menu_options_userhelp', $menu_options_userhelp);
   $menu_parent_userhelp = 'user-help-menu:0';
-  variable_set('menu_parent_userhelp',$menu_parent_userhelp);
+  variable_set('menu_parent_userhelp', $menu_parent_userhelp);
 
   $userhelp = array(
     'type' => 'userhelp',
@@ -210,7 +210,7 @@ function bibdk_help_enable() {
 
   $search_active_modules = variable_get('search_active_modules');
   $search_active_modules['bibdk_help'] = 'bibdk_help';
-  variable_set('search_active_modules',$search_active_modules);
+  variable_set('search_active_modules', $search_active_modules);
 
 }
 
@@ -309,9 +309,9 @@ function bibdk_help_update_7000(&$sandbox) {
   // configure default menu for user help content.
   $menu_options_userhelp['0'] = 'user-help-menu';
   $menu_options_userhelp['1'] = 'user-help-topbar-menu';
-  variable_set('menu_options_userhelp',$menu_options_userhelp);
+  variable_set('menu_options_userhelp', $menu_options_userhelp);
   $menu_parent_userhelp = 'user-help-menu:0';
-  variable_set('menu_parent_userhelp',$menu_parent_userhelp);
+  variable_set('menu_parent_userhelp', $menu_parent_userhelp);
 }
 
 
@@ -524,7 +524,7 @@ function bibdk_help_update_7002(&$sandbox) {
   $menu_options_userhelp['1'] = 'user-help-menu-eng';
   $menu_options_userhelp['2'] = 'user-help-topbar-menu';
   $menu_options_userhelp['3'] = 'user-help-topbar-menu-eng';
-  variable_set('menu_options_userhelp',$menu_options_userhelp);
+  variable_set('menu_options_userhelp', $menu_options_userhelp);
 }
 
 
