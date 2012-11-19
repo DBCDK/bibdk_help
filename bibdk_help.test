@@ -1,7 +1,9 @@
 <?php
 /**
+* @file
 * Tests the functionality of bibdk user help content types.
 */
+
 class BibdkHelpTestCase extends DrupalWebTestCase {
   protected $privileged_user;
 
@@ -42,7 +44,7 @@ class BibdkHelpTestCase extends DrupalWebTestCase {
 
     // Test that the '/help' panel page is available, and the node is in the list.
     $this->drupalGet('help');
-    $this->assertText($node_title,t('The node title "@node_title" was found',array('@node_title'=>$node_title)));
+    $this->assertText($node_title, t('The node title "@node_title" was found', array('@node_title' => $node_title)));
 
   }
 
@@ -60,7 +62,7 @@ class BibdkHelpTestCase extends DrupalWebTestCase {
 
     // Test that the '/help' panel page is available, and the node is in the list.
     $this->drupalGet('help');
-    $this->assertText($node_title,t('The node title "@node_title" was found',array('@node_title'=>$node_title)));
+    $this->assertText($node_title, t('The node title "@node_title" was found', array('@node_title' => $node_title)));
 
     // Test that this page has a a search block.
     $this->drupalGet('help');
@@ -69,7 +71,7 @@ class BibdkHelpTestCase extends DrupalWebTestCase {
     );
 
     // Test that there is a 'Search' button.
-    $this->assertText('Search',t('The "Search" button was found'));
+    $this->assertText('Search', t('The "Search" button was found'));
 
     // Check if search module is installed
     $exists = module_exists('search');
@@ -82,7 +84,7 @@ class BibdkHelpTestCase extends DrupalWebTestCase {
     $edit = array();
     $edit['search_help'] = $node_title;
     $this->drupalPost('help', $edit, t('Search'), array(), array(), 'bibdk-help-search-form', NULL);
-    $this->assertNoText('Search returned no results.',t('Search returned a search result'));
+    $this->assertNoText('Search returned no results.', t('Search returned a search result'));
 
   }
 

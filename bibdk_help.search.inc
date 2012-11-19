@@ -1,4 +1,8 @@
 <?php
+/**
+* @file
+* Configure search for userhelp content.
+*/
 
 /**
  * Return a help text search form.
@@ -122,7 +126,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 
     $uri = entity_uri('node', $node);
     $results[] = array(
-      'link' => str_replace('/node/','/help/',url($uri['path']), array_merge($uri['options'], array('absolute' => TRUE))),
+      'link' => str_replace('/node/', '/overlay/help/', url($uri['path']), array_merge($uri['options'], array('absolute' => TRUE))),
       'type' => check_plain(node_type_get_name($node)),
       'title' => $node->title,
       // 'user' => theme('username', array('account' => $node)),

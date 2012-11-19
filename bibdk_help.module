@@ -11,9 +11,9 @@ include_once('bibdk_help.search.inc');
  * Implements hook_help().
  */
 function bibdk_help_help($path, $arg) {
-  switch($path){
+  switch ($path) {
     case 'admin/help#bibdk_help';
-      $file = drupal_get_path('module', 'bibdk_help') . "/help/bibdk_help.html";
+      $file = drupal_get_path('module', 'bibdk_help') . "/overlay/help/bibdk_help.html";
       return $output = file_get_contents($file);
     break;
   }
@@ -24,8 +24,21 @@ function bibdk_help_help($path, $arg) {
  * Implements hook_block_info().
  */
 function bibdk_help_block_info() {
+  // configure default menu for user help content.
   $blocks['bibdk-help-topbar-menu'] = array(
       'info' => t('Bibdk user help topbar block'),
+      'cache' => DRUPAL_CACHE_PER_PAGE,
+    );
+  $blocks['bibdk-help-topbar-menu-eng'] = array(
+      'info' => t('Bibdk user help topbar block (eng)'),
+      'cache' => DRUPAL_CACHE_PER_PAGE,
+    );
+  $blocks['bibdk-help-popup-menu'] = array(
+      'info' => t('Bibdk user help popup menu block'),
+      'cache' => DRUPAL_CACHE_PER_PAGE,
+    );
+  $blocks['bibdk-help-popup-menu-eng'] = array(
+      'info' => t('Bibdk user help popup menu block (eng)'),
       'cache' => DRUPAL_CACHE_PER_PAGE,
     );
   $blocks['bibdk-help-form'] = array(
@@ -41,16 +54,20 @@ function bibdk_help_block_info() {
  */
 function bibdk_help_block_view($delta = '') {
   $block = array();
+  $language = '';
   switch ($delta) {
+    case 'bibdk-help-topbar-menu-eng':
+      $language = 'eng';
     case 'bibdk-help-topbar-menu':
       drupal_add_css(
         drupal_get_path('module', 'bibdk_help') . '/css/bibdk_help.css',
         array('group' => CSS_DEFAULT,
-        'every_page' => TRUE)
+              'every_page' => TRUE)
       );
-      $block['subject'] = t('Bibliotek.dk user help topbar links');
-      $list = array('links' => menu_navigation_links('user-help-topbar-menu'),
-                    'attributes' => array('class'=> array('menu', 'user-help-topbar-menu'))
+      $block['subject'] = t('Bibliotek.dk user help topbar links %lang', array('%lang' => ($language) ? '(' . $language . ')' : ''));
+      $menuname = 'user-help-topbar-menu' . (($language) ? '-' . $language : '');
+      $list = array('links' => menu_navigation_links($menuname),
+                    'attributes' => array('class' => array('menu', 'user-help-topbar-menu'))
                    );
       // first item in list ('Help') is defined in bibdk_help.install
       foreach ($list['links'] as $key => $menu_item) {
@@ -58,8 +75,27 @@ function bibdk_help_block_view($delta = '') {
         $list['links'][$key]['attributes']['class'][] = 'bibdk-popup-link';
         $list['links'][$key]['attributes']['rel'][] = 'userhelp';
       }
-      $block['content'] = theme('theme-bibdk-help-topbar-menu',$list);
+      $block['content'] = theme('theme-bibdk-help-topbar-menu', $list);
       break;
+
+    case 'bibdk-help-popup-menu-eng':
+      $language = 'eng';
+    case 'bibdk-help-popup-menu':
+      drupal_add_css(
+        drupal_get_path('module', 'bibdk_help') . '/css/bibdk_help.css',
+        array('group' => CSS_DEFAULT,
+        'every_page' => TRUE)
+      );
+      $block['subject'] = t('Bibliotek.dk user help links %lang', array('%lang' => ($language) ? '(' . $language . ')' : ''));
+      $menu = menu_tree('user-help-menu' . (($language) ? '-' . $language : ''));
+      foreach ($menu as $key => $menu_item) {
+        // set path to overlay/help/%nodeid
+        $menu[$key] =  _replace_link($menu_item);
+      }
+      $menu['#attributes'] = array('class' => array('menu', 'user-help-menu'));
+      $block['content'] = drupal_render($menu);
+      break;
+
     case 'bibdk-help-form':
       $block['subject'] = t('Bibliotek.dk user help search');
       $block['content'] = drupal_get_form('bibdk_help_search_form');
@@ -68,34 +104,48 @@ function bibdk_help_block_view($delta = '') {
   return $block;
 }
 
+function _replace_link($menu_item) {
+  if ( isset($menu_item['#href']) ) {
+    $menu_item['#href'] = str_replace('node/', 'overlay/help/', $menu_item['#href']);
+  }
+  if ( !empty($menu_item['#below']) ) {
+    foreach ($menu_item['#below'] as $key => $menu_item_below) {
+      $menu_item['#below'][$key] =  _replace_link($menu_item_below);
+    }
+  }
+  return $menu_item;
+}
+
 
 /**
  * Implements hook_node_presave().
  *
  */
+ /*
 function bibdk_help_node_presave($node){
   if ($node->type ==='userhelp'){
     if ( !$node->path['alias'] ) {
-      $node->path['alias'] = str_replace('node/','help/',$node->path['source']);
+      $node->path['alias'] = str_replace('node/','overlay/help/',$node->path['source']);
     }
   }
 }
-
+*/
 
 /**
  * Implements hook_node_insert().
  *
  */
+/*
 function bibdk_help_node_insert($node){
   if ($node->type ==='userhelp'){
     if ( !$node->path['alias'] ) {
-      $node->path['alias'] = 'help/' . $node->nid;
+      $node->path['alias'] = 'overlay/help/' . $node->nid;
     }
     $node->is_new = FALSE;
     node_save($node);
   }
 }
-
+*/
 
 /**
  * Implements hook_entity_info_alter().

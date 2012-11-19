@@ -12,6 +12,7 @@
  */
 $plugin = array(
   'title' => t('Bibliotek.dk user help'),
+  'admin info' => 'bibdk_help_bibdk_help_admin_info',
   'content_types' => 'bibdk_help',
   'single' => TRUE,
   'render callback' => 'bibdk_help_render',
@@ -20,6 +21,22 @@ $plugin = array(
   'edit form' => 'bibdk_help_edit_form',
   'category' => array(t('Ding!'), -9),
 );
+
+
+/**
+ * Callback to provide administrative info (the preview in panels when building
+ * a panel).
+ *
+ * In this case we'll render the content with a dummy argument and
+ * a dummy context.
+ */
+function bibdk_help_bibdk_help_admin_info($subtype, $conf, $context = NULL) {
+  $context = new stdClass();
+  $context->data = new stdClass();
+  $context->data->description = t("Bibliotek.dk user help");
+  $block = bibdk_help_render($subtype, $conf, array("Example"), $context);
+  return $block;
+}
 
 
 /**
@@ -34,6 +51,7 @@ $plugin = array(
  * @return
  *   An object with at least title and content members
  */
+ // simplecontext_content_type_render
 function bibdk_help_render($subtype, $conf, $args, $context) {
 
   $data = $context->data;
@@ -60,7 +78,7 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
   $block->title = "Bibliotek.dk user help";
 
   // Build Breadcrumbs
-  $breadcrumb[] = l('Help', 'help');
+  $breadcrumb[] = l(t('Help'), 'help');
 
   if ( $nid ) {
     $node = node_load($nid);
@@ -73,34 +91,11 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
     $breadcrumb[] = l($node->title, current_path());
     drupal_set_breadcrumb($breadcrumb);
     $nodeview = node_view($node, 'full');
-    $nodeview['help_url'] = '/help/' . $nid;
+    $nodeview['help_url'] = '/overlay/help/' . $nid;
     $nodeview['#contextual_links']['node'][0] = 'help';
     $block->content = $nodeview;
     return $block;
   }
-
-/*
-  $renderable_array = array();
-  $sql = 'SELECT nid FROM {node} n WHERE n.type = :type AND n.status = :status';
-  $result = db_query($sql,
-    array(
-      ':type' => 'userhelp',
-      ':status' => 1,
-    )
-  );
-  $renderable_array['explanation'] = array(
-    '#markup' => '<p>' . t("This list is a list of help texts.") . '</p>',
-  );
-  foreach ($result as $row) {
-    $node = node_load($row->nid);
-    $nodeview = node_view($node, 'bibdk_help_list');
-    $nodeview['help_url'] = '/help/' . $row->nid;
-    $nodeview['#contextual_links']['node'][0] = 'help';
-    $renderable_array['node_list'][]= $nodeview;
-  }
-  $block->content = $renderable_array;
-  return $block;
-*/
 
 }
 
