@@ -83,7 +83,7 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
   if ( $nid ) {
     $node = node_load($nid);
     if ( !$node ) {
-      drupal_set_message(t('The help node does not exist.'), 'warning');
+      drupal_set_message(t('The help node does not exist.', array(), array('context' => 'bibdk_help')), 'warning');
       return $block;
     }
     // The title actually used in rendering.
