@@ -98,7 +98,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 
   // Only continue if the first pass query matches.
   if (!$query->executeFirstPass()) {
-    drupal_set_message(t('Search returned no results.'), 'notice');
+    drupal_set_message(t('Search returned no results.', array(), array('context' => 'bibdk_help')), 'notice');
     return array();
   }
 
@@ -140,7 +140,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
   }
 
   if ( !$results ) {
-    drupal_set_message(t('Search returned no results.'), 'notice');
+    drupal_set_message(t('Search returned no results.', array(), array('context' => 'bibdk_help')), 'notice');
   }
 
   return array(
