@@ -53,7 +53,7 @@ function bibdk_help_search_form_submit(&$form, &$form_state) {
  */
 function bibdk_help_search_form_validate($form, &$form_state) {
   if ( !$form_state['values']['search_help'] ) {
-    form_set_error('search_help', t('Enter a search term.', array()));
+    form_set_error('search_help', t('Enter a search term.', array(), array('context' => 'bibdk_help:error')));
   }
 }
 
