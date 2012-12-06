@@ -53,7 +53,7 @@ function bibdk_help_search_form_submit(&$form, &$form_state) {
  */
 function bibdk_help_search_form_validate($form, &$form_state) {
   if ( !$form_state['values']['search_help'] ) {
-    form_set_error('search_help', t('Enter a search term.', array()));
+    form_set_error('search_help', t('Enter a search term.', array(), array('context' => 'bibdk_help:error')));
   }
 }
 
@@ -98,7 +98,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 
   // Only continue if the first pass query matches.
   if (!$query->executeFirstPass()) {
-    drupal_set_message(t('Search returned no results.'), 'notice');
+    drupal_set_message(t('Search returned no results.', array(), array('context' => 'bibdk_help')), 'notice');
     return array();
   }
 
@@ -140,7 +140,7 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
   }
 
   if ( !$results ) {
-    drupal_set_message(t('Search returned no results.'), 'notice');
+    drupal_set_message(t('Search returned no results.', array(), array('context' => 'bibdk_help')), 'notice');
   }
 
   return array(
