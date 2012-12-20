@@ -1,8 +1,8 @@
 name = Bibliotek.dk user help
 description = Provide a user help function for Bibliotek.dk.
 core = 7.x
-version = 7.x-0.3
-package = "Bibliotek.dk"
+version = 7.x-0.4
+package = Bibliotek.dk
 
 dependencies[] = ctools
 dependencies[] = panels
