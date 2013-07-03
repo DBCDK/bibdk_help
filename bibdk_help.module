@@ -13,7 +13,7 @@ include_once('bibdk_help.search.inc');
 function bibdk_help_help($path, $arg) {
   switch ($path) {
     case 'admin/help#bibdk_help';
-      $file = drupal_get_path('module', 'bibdk_help') . "/overlay/help/bibdk_help.html";
+      $file = drupal_get_path('module', 'bibdk_help') . "/help/bibdk_help.html";
       return $output = file_get_contents($file);
     break;
   }
