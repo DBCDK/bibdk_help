@@ -73,7 +73,7 @@ function bibdk_help_block_view($delta = '') {
       foreach ($list['links'] as $key => $menu_item) {
         // set class to make use of popup javascript
         $list['links'][$key]['attributes']['class'][] = 'bibdk-popup-link';
-        $list['links'][$key]['attributes']['rel'][] = 'userhelp';
+        $list['links'][$key]['attributes']['data-rel'][] = 'userhelp';
       }
       $block['content'] = theme('theme-bibdk-help-topbar-menu', $list);
       break;
