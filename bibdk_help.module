@@ -117,37 +117,6 @@ function _replace_link($menu_item) {
   return $menu_item;
 }
 
-
-/**
- * Implements hook_node_presave().
- *
- */
- /*
-function bibdk_help_node_presave($node){
-  if ($node->type ==='userhelp'){
-    if ( !$node->path['alias'] ) {
-      $node->path['alias'] = str_replace('node/','overlay/help/',$node->path['source']);
-    }
-  }
-}
-*/
-
-/**
- * Implements hook_node_insert().
- *
- */
-/*
-function bibdk_help_node_insert($node){
-  if ($node->type ==='userhelp'){
-    if ( !$node->path['alias'] ) {
-      $node->path['alias'] = 'overlay/help/' . $node->nid;
-    }
-    $node->is_new = FALSE;
-    node_save($node);
-  }
-}
-*/
-
 /**
  * Implements hook_entity_info_alter().
  *
