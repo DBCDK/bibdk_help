@@ -61,7 +61,7 @@ function bibdk_help_install() {
   $item = array(
     'menu_name'   => 'user-help-topbar-menu',
     'link_path'   => drupal_get_normal_path('overlay/help'),
-    'link_title'  => $t('Hjaelp'),
+    'link_title'  => $t('Hjælp'),
     'router_path' => 'overlay/help',
     'depth'       => '1',
     'customized'  => '1',
@@ -446,7 +446,7 @@ function bibdk_help_update_7001(&$sandbox) {
   $item = array(
     'menu_name'   => 'user-help-topbar-menu',
     'link_path'   => drupal_get_normal_path('help'),
-    'link_title'  => $t('Hjaelp'),
+    'link_title'  => $t('Hjælp'),
     'router_path' => 'overlay/help',
     'depth'       => '1',
     'customized'  => '1',
