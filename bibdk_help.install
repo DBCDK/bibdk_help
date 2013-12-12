@@ -680,6 +680,8 @@ function _bibdk_help_installed_instances() {
  * Update or insert i18n_block_language values
  */
 function _bibdk_help_i18n_block_language() {
+  
+  module_enable(array('i18n_block'));
 
   db_merge('i18n_block_language')
     ->key(array('delta' => 'bibdk-help-topbar-menu'))
