@@ -1,7 +1,7 @@
-name = Bibliotek.dk user help
+name = Bibliotek.dk - User help
 description = Provide a user help function for Bibliotek.dk.
 core = 7.x
-version = 7.x-0.7
+version = 7.x-0.8
 package = Bibliotek.dk
 
 dependencies[] = ctools
@@ -9,5 +9,6 @@ dependencies[] = panels
 dependencies[] = page_manager
 dependencies[] = i18n
 dependencies[] = i18n_menu
+dependencies[] = i18n_block
 
 files[] = bibdk_help.test
