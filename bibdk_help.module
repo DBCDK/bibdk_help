@@ -87,14 +87,22 @@ function bibdk_help_block_view($delta = '') {
         array('group' => CSS_DEFAULT,
         'every_page' => TRUE)
       );
+
       $block['subject'] = t('Bibliotek.dk user help links %lang', array('%lang' => ($language) ? '(' . $language . ')' : ''));
+
+      $block['content']['help_menu_header']['#type'] = 'container';
+      $block['content']['help_menu_header']['#attributes'] = array('class' => array('help-menu-subheader'));
+      $block['content']['help_menu_header']['header_text']['#type'] = 'markup';
+      $block['content']['help_menu_header']['header_text']['#markup'] = t('help_menu_header', array(), array('context' => 'bibdk_help'));
+
       $menu = menu_tree('user-help-menu' . (($language) ? '-' . $language : ''));
       foreach ($menu as $key => $menu_item) {
         // set path to overlay/help/%nodeid
         $menu[$key] =  _replace_link($menu_item);
       }
       $menu['#attributes'] = array('class' => array('menu', 'user-help-menu'));
-      $block['content'] = drupal_render($menu);
+      $block['content']['menu'] = $menu;
+
       break;
 
     case 'bibdk-help-form':
