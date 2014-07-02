@@ -187,7 +187,9 @@ function bibdk_help_form_userhelp_node_form_alter(&$form, &$form_state, $form_id
   // set help combobox
   $form['field_user_help_list']['und']['#options'] = $liste;
   // Set defaultvalue for combobox
-  $form['field_user_help_list']['und']['#default_value'] = $form['#node']->field_user_help_list['und']['0']['value'];
+  if ( isset($form['#node']->field_user_help_list['und']['0']['value']) ) {
+    $form['field_user_help_list']['und']['#default_value'] = $form['#node']->field_user_help_list['und']['0']['value'];
+  }
 }
 
 /**
