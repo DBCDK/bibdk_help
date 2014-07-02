@@ -297,6 +297,9 @@ function bibdk_help_install() {
   }
 
   _bibdk_help_i18n_block_language();
+  
+  //Add field for user help list
+  _bibdk_help_update_field_user_help_list(); 
 
 }
 
@@ -655,10 +658,18 @@ function bibdk_help_update_7003(&$sandbox) {
 }
 
 /**
- * Update userhelp with field_user_help_list values.
+ * Update userhelp with field_user_help_list values. 
  */
 function bibdk_help_update_7004(&$sandbox) {
-   $field_name = 'field_user_help_list';
+  _bibdk_help_update_field_user_help_list(); 
+}
+
+/**
+ * Update userhelp with field_user_help_list values.
+ * function will be  called for new and update install
+ */
+function _bibdk_help_update_field_user_help_list() {
+  $field_name = 'field_user_help_list';
   // Make sure the field doesn't already exist.
   if (!field_info_field($field_name)) {
     // Create the field.
@@ -682,8 +693,8 @@ function bibdk_help_update_7004(&$sandbox) {
   else {
     watchdog('help_module', t('!field_name already exists.', array('!field_name' => $field_name)));
   }
-
 }
+
 
 /**
  * Returns a structured array defining the fields created by this content type.
