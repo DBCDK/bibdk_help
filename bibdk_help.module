@@ -182,7 +182,7 @@ function bibdk_help_ctools_plugin_directory($module, $plugin) {
  * form_userhelp_ID_alter() for form userhelp_form.
  */
 function bibdk_help_form_userhelp_node_form_alter(&$form, &$form_state, $form_id) {
-  // Invoke all hooks for user_help_list  
+  // Invoke all hooks for user_help_list
   $liste = module_invoke_all('user_help_list');
   // set help combobox
   $form['field_user_help_list']['und']['#options'] = $liste;
@@ -195,20 +195,23 @@ function bibdk_help_form_userhelp_node_form_alter(&$form, &$form_state, $form_id
 /**
  * Get helptext from from userhelp db
  *
- * @param $helpvalue (label for helpvalue) 
+ * @param $helpvalue (label for helpvalue)
  * @return helptext
  */
 function bibdk_help_get_help_text_from_db($helpvalue) {
   global $language;
-  
+
   // default type is userhelp
   $type = 'userhelp';
 
   $query = new EntityFieldQuery();
   $entities = $query->entityCondition('entity_type', 'node')
     ->propertyCondition('type', $type)
-    ->propertyCondition('language', $language->language)  
+    ->propertyCondition('language', $language->language)
     ->execute();
+
+  if(!isset($entities['node']))
+    return '';
 
   foreach ($entities['node'] as $record) {
     $node = node_load($record->nid);
