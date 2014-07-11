@@ -185,7 +185,9 @@ function bibdk_help_form_userhelp_node_form_alter(&$form, &$form_state, $form_id
   // Invoke all hooks for user_help_list  
   $liste = module_invoke_all('user_help_list');
   // set help combobox
+  $liste = array_merge(array(''=>t('choose_userhelp_type')), $liste);
   $form['field_user_help_list']['und']['#options'] = $liste;
+  
   // Set defaultvalue for combobox
   if ( isset($form['#node']->field_user_help_list['und']['0']['value']) ) {
     $form['field_user_help_list']['und']['#default_value'] = $form['#node']->field_user_help_list['und']['0']['value'];
@@ -212,9 +214,11 @@ function bibdk_help_get_help_text_from_db($helpvalue) {
 
   foreach ($entities['node'] as $record) {
     $node = node_load($record->nid);
-    if ($helpvalue == $node->field_user_help_list['und'][0]['value']) {
-      return $node->body['und'][0]['value'];
-    }
+    if (isset($node->field_user_help_list['und'][0]['value'])) {
+      if ($helpvalue == $node->field_user_help_list['und'][0]['value']) {
+        return $node->body['und'][0]['value'];
+      }
+    }  
   }
   return '';
 }
