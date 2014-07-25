@@ -90,8 +90,13 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
     ->extend('SearchQuery')
     ->extend('PagerDefault');
   $query->join('node', 'n', 'n.nid = i.sid');
+
+  $db_or = db_or();
+  $db_or->condition('n.type', 'userhelp');
+  $db_or->condition('n.type', 'bibdk_newsroom');
+
   $query
-    ->condition('n.type', 'userhelp')
+    ->condition($db_or)
     ->condition('n.status', 1)
     ->searchExpression($keys, 'node');
 
