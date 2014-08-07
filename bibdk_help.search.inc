@@ -32,6 +32,12 @@ function bibdk_help_search_form($form, &$form_state) {
   if ( $search_help = $form['userhelp']['search_help']['#default_value'] ) {
     $query_result = bibdk_help_search_form_search($form_state['values']['search_help']);
     $form['query_result'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'id' => array('query-result'),
+      ),
+    );
+    $form['query_result']['list_result'] = array(
       '#markup' => drupal_render($query_result),
     );
   }
@@ -84,8 +90,13 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
     ->extend('SearchQuery')
     ->extend('PagerDefault');
   $query->join('node', 'n', 'n.nid = i.sid');
+
+  $db_or = db_or();
+  $db_or->condition('n.type', 'userhelp');
+  $db_or->condition('n.type', 'bibdk_newsroom');
+
   $query
-    ->condition('n.type', 'userhelp')
+    ->condition($db_or)
     ->condition('n.status', 1)
     ->searchExpression($keys, 'node');
 
