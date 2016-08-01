@@ -7,10 +7,16 @@
 
 <p>The help panel page also has a search block, and the search is delimited to 'userhelp' nodes.</p>
 
-<p>When adding userhelp content, you define language by providing a menu link to the item, and selecting 'Bibliotek.dk user help menu' for items in danish, and 'Bibliotek.dk user help menu (eng)' for items in english.</p>
+<p>When adding userhelp content, you define language by providing a menu link to the item, and selecting
+   'Bibliotek.dk user help menu' for items in danish, and 'Bibliotek.dk user help menu (eng)' for items in english.</p>
 
 <p>After installing, copy the files node--userhelp.tpl.php and page--userhelp.tpl.php
    to the active theme's '/templates' folder<br/>
-   We use $content['help_url'] instead of $node_url, in order to make
-   the links in the bibdk_help_list viewmode point to a '/overlay/help/' path instead of a '/node/' path.</p>
+   Activate as an "active search module" in admin/config/search/settings<br/>
+   We use $content['#help_url'] instead of $node_url, in order to make
+   the links in the bibdk_help_list viewmode point to a '/userhelp/help/' path instead of a '/node/' path.</p>
+
+<p>Update 27-07-2016 JGN:<br>
+   Menu definitions has been moved to a frontend module:<br/>
+   See f.ex. netpunkt_menu: netpunkt/modules/netpunkt/menu</p>
 

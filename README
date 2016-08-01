@@ -7,4 +7,7 @@
  *
  * We use $content['help_url'] instead of $node_url, in order to make
  * the links in the bibdk_help_list viewmode point to our contenttype.
+ * 
+ * Menu definitions has been moved to a frontend module:
+ * See f.ex. netpunkt_menu: netpunkt/modules/netpunkt/menu
  */

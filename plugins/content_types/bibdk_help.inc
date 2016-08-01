@@ -91,7 +91,7 @@ function bibdk_help_render($subtype, $conf, $args, $context) {
     $breadcrumb[] = l($node->title, current_path());
     drupal_set_breadcrumb($breadcrumb);
     $nodeview = node_view($node, 'full');
-    $nodeview['help_url'] = '/overlay/help/' . $nid;
+    $nodeview['help_url'] = array('#markup' => base_path() . 'userhelp/help/' . $nid);
     $nodeview['#contextual_links']['node'][0] = 'help';
     $block->content = $nodeview;
     return $block;

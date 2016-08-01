@@ -3,22 +3,25 @@
  * We use $content['help_url'] instead of $node_url, in order to make
  * the links in the bibdk_help_list viewmode point to our content_type.
  *
- * Copy this file to the active theme's '/templates' folder
+ * Copy this file to the active themes '/templates' folder
  */
 ?>
 <div class="<?php print implode(' ', $classes_array); ?>">
 
   <?php print render($title_prefix); ?>
+
   <?php if (!$page): ?>
     <h2<?php print $title_attributes; ?>>
-      <a href="<?php print $content['help_url']; ?>"><?php print $title; ?></a>
+      <a href="<?php print $content['help_url']['#markup']; ?>"><?php print $title; ?></a>
     </h2>
   <?php endif; ?>
+
   <?php print render($title_suffix); ?>
 
   <div class="content clearfix"<?php print $content_attributes; ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
+      hide($content['help_url']);
       hide($content['comments']);
       hide($content['links']);
       print render($content);
