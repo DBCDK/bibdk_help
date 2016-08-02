@@ -4,4 +4,4 @@ core = 7.x
 version = 7.x-0.12
 package = Bibliotek.dk
 
-files[] = test/bibdk_help.test
+files[] = test/bibdk_help_web_test.test

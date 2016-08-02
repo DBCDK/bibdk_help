@@ -4,7 +4,7 @@
 * Tests the functionality of bibdk user help content types.
 */
 
-class BibdkHelpTestCase extends DrupalWebTestCase {
+class BibdkHelpWebTestCase extends DrupalWebTestCase {
   protected $privileged_user;
 
   public static function getInfo() {
@@ -48,7 +48,7 @@ class BibdkHelpTestCase extends DrupalWebTestCase {
     // $this->assertText($node_title, t('The node title "@node_title" was found', array('@node_title' => $node_title)));
 
     // Test that this page has a a search block.
-    $this->drupalGet('userhelp/help');
+    $this->drupalGet('userhelp');
     $this->assertFieldByName(
       'search_block_form'
     );
