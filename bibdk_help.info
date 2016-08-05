@@ -1,7 +1,7 @@
 name = Bibliotek.dk - User help
-description = Provide a user help function for Bibliotek.dk.
+description = Provide a user help function for Bibliotek.dk and Netpunkt.
 core = 7.x
-version = 7.x-0.12
+version = 7.x-0.13
 package = Bibliotek.dk
 
 files[] = test/bibdk_help_web_test.test
