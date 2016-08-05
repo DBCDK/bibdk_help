@@ -19,7 +19,7 @@ function bibdk_help_search_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Search help:'),
     '#title_display'  => 'invisible',
-    '#size' => 5,
+    '#size' => 10,
     '#default_value' => !empty($form_state['values']['search_help']) ? $form_state['values']['search_help'] : '',
   );
 
@@ -137,11 +137,9 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 
     $uri = entity_uri('node', $node);
     $results[] = array(
-      'link' => str_replace('/node/', '/overlay/help/', url($uri['path'], array_merge($uri['options'], array('absolute' => TRUE)))),
+      'link' => str_replace('/node/', '/userhelp/help/', url($uri['path'], array_merge($uri['options'], array('absolute' => TRUE)))),
       'type' => check_plain(node_type_get_name($node)),
       'title' => $node->title,
-      // 'user' => theme('username', array('account' => $node)),
-      // 'date' => $node->changed,
       'node' => $node,
       'extra' => $extra,
       'theme' => 'search_item',
@@ -163,6 +161,9 @@ function bibdk_help_search_execute($keys = NULL, $conditions = NULL) {
 }
 
 
+/**
+ * Implements hook_search_info().
+ */
 function bibdk_help_search_info() {
   return array(
     'title' => 'User help',
@@ -172,6 +173,9 @@ function bibdk_help_search_info() {
 }
 
 
+/**
+ * Implements hook_update_index().
+ */
 function bibdk_help_update_index() {
 
   $limit = (int) variable_get('search_cron_limit', 100);
@@ -196,7 +200,7 @@ function bibdk_help_update_index() {
     node_build_content($node, 'search_index');
     $node->rendered = drupal_render($node->content);
 
-    $text = '<h1>' . check_plain($node->title) . '</h1>' . $node->rendered;
+    $text = '<h3>' . check_plain($node->title) . '</h3>' . $node->rendered;
 
     // Update index
     search_index($node->nid, 'node', $text);
