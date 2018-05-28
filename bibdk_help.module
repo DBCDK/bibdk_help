@@ -89,11 +89,20 @@ function bibdk_help_block_view($delta = '') {
  * Helper function for bibdk_help.
  */
 function _bibdk_help_menu($language = '') {
-
-  $header['#type'] = 'container';
-  $header['#attributes'] = array('class' => array('help-menu-subheader'));
-  $header['header_text']['#type'] = 'markup';
-  $header['header_text']['#markup'] = t('help_menu_header', array(), array('context' => 'bibdk_help'));
+  $header = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('help-menu-subheader')),
+    'title' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'h1',
+      '#value' => t('help_menu_header', array(), array('context' => 'bibdk_help')),
+    ),
+    'description' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => t('help_menu_description', array(), array('context' => 'bibdk_help')),
+    ),
+  );
 
   $menu = menu_tree('user-help-menu' . (($language) ? '-' . $language : ''));
   foreach ($menu as $key => $menu_item) {
@@ -107,7 +116,7 @@ function _bibdk_help_menu($language = '') {
     'header' => $header,
     'menu' => $menu,
   );
-  
+
 }
 
 
@@ -179,7 +188,7 @@ function bibdk_help_form_userhelp_node_form_alter(&$form, &$form_state, $form_id
   // set help combobox
   $liste = array_merge(array(''=>t('choose_userhelp_type')), $liste);
   $form['field_user_help_list']['und']['#options'] = $liste;
-  
+
   // Set defaultvalue for combobox
   if ( isset($form['#node']->field_user_help_list['und']['0']['value']) ) {
     $form['field_user_help_list']['und']['#default_value'] = $form['#node']->field_user_help_list['und']['0']['value'];
@@ -214,7 +223,7 @@ function bibdk_help_get_help_text_from_db($helpvalue) {
       if ($helpvalue == $node->field_user_help_list['und'][0]['value']) {
         return $node->body['und'][0]['value'];
       }
-    }  
+    }
   }
   return '';
 }
