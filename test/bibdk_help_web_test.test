@@ -11,7 +11,7 @@ class BibdkHelpWebTestCase extends DrupalWebTestCase {
     return array(
       'name' => 'Bibdk help',
       'description' => 'Bibdk help test.',
-      'group' => 'bibliotek.dk',
+      'group' => 'Netpunkt / Bibliotek.dk',
     );
   }
 
